@@ -38,6 +38,45 @@ for m = 0:2
         end
     end
 end
+%检查行和列上的单独备选
+%行
+for i = 1:9
+    A = [];
+    for j = 1:9
+        A = [A,alter{i,j}];
+    end
+    %A为所有备选项
+    for num = 1:9
+        if sum(A == num) == 1
+            for j = 1:9
+                ind = find(alter{i,j} == num);
+                if ~isempty(ind)
+                    sudo(i,j) = num;
+                    fillnum = fillnum + 1;
+                end
+            end
+        end
+    end
+end
+%列
+for j = 1:9
+    A = [];
+    for i = 1:9
+        A = [A,alter{i,j}];
+    end
+    %A为所有备选项
+    for num = 1:9
+        if sum(A == num) == 1
+            for i = 1:9
+                ind = find(alter{i,j} == num);
+                if ~isempty(ind)
+                    sudo(i,j) = num;
+                    fillnum = fillnum + 1;
+                end
+            end
+        end
+    end
+end
 %check检查n是否可以放入（i，j）,不能返回1，能返回0；
 function [k] = check(sudo,i,j,n)
 k = 0;
